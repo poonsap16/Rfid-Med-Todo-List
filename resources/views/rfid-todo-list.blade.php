@@ -35,7 +35,7 @@
                 <div class="alert alert-info" role="alert">
                   <h2>RFID Med - Todo List</h2>
                     <div class="text-center">
-                        <input type="text" name="task" class="form-control input-lg" placeholder="type your Task then press ENTER">
+                        <input type="text" name="task_name" class="form-control input-lg" placeholder="type your Task then press ENTER">
                     </div>
                 </div>
             </form>

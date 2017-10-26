@@ -9,12 +9,14 @@ class TaskController extends Controller
 {
     public function storeTask(Request $request){
 
-        if ($request->filled('task')) {
-          //$task = $request->input('task');
+        if ($request->filled('task_name')) {
+          //$task = $request->input('task_name');
           //return $task;
 
           $task = $request->all();
-          Task::create();
+          //return $task;
+          $task['task_status'] = 0;
+          Task::create($task);
         }
 
         return redirect('/rfid-todo-list');
