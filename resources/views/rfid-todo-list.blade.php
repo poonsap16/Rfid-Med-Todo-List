@@ -41,10 +41,22 @@
             </form>
         </div>
         <div class="col-sm-6">
-            <ul class="list-group">
-                <li class="list-group-item active">Todo Tasks</li>
 
-            </ul>
+              <ul class="list-group">
+                  <li class="list-group-item active">Todo Tasks</li>
+                    @foreach($tasks as $task)
+                    <li class="list-group-item list-group-item-success">
+                      {{ $task->task_name }}
+                    </li>
+                    <li class="list-group-item list-group-item-success">
+                      {{ $task->task_status}}
+                    </li>
+                    @endforeach
+
+              </ul>
+
+
+
         </div>
         <div class="col-sm-6">
             <ul class="list-group">
