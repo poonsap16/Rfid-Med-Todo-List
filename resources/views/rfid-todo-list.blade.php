@@ -44,26 +44,28 @@
 
               <ul class="list-group">
                   <li class="list-group-item active">Todo Tasks</li>
-                    @foreach($tasks as $task)
-                    <li class="list-group-item list-group-item-success">
-                      {{ $task->task_name }}
-                    </li>
-                    <li class="list-group-item list-group-item-success">
-                      {{ $task->task_status}}
-                    </li>
-                    @endforeach
+                  @foreach($tasks as $task)
 
+                    @if($task->task_status == 0)
+                      <li class="list-group-item list-group-item-warning">
+                        {{$task->task_name}}
+                        <span class="badge">23 hours before</span>
+                      </li>
+                    @endif
+                  @endforeach
               </ul>
-
-
-
         </div>
         <div class="col-sm-6">
             <ul class="list-group">
                 <li class="list-group-item active">Completed Tasks</li>
+                @foreach($tasks as $task)
+                  @if($task->task_status == 1)
                     <li class="list-group-item list-group-item-success">
-
+                      {{$task->task_name}}
+                      <span class="badge">23 hours before</span>
                     </li>
+                  @endif
+                @endforeach
             </ul>
         </div>
     </div>

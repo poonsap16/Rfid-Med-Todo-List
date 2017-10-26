@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/rfid-todo-list', function () {
-    return view('rfid-todo-list');
-});
+// Route::get('/rfid-todo-list', function () {
+//     return view('rfid-todo-list');
+// });
 
+Route::get('/rfid-todo-list', 'TaskController@taskList');
 Route::post('/store-task', 'TaskController@storeTask');

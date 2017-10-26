@@ -19,14 +19,21 @@ class TaskController extends Controller
           Task::create($task);
         }
         $tasks = Task::all();
+        //return $tasks;
         return view('rfid-todo-list', compact('tasks'));
         // foreach ($tasks as $task) {
         //
-        // return $task->['task_name'];
+        // return $task->['task_name']
         // }
 
         //return redirect('/rfid-todo-list',compact('$tasks'));
         //return view('rfid-todo-list');
+    }
+
+    public function taskList(Request $request){
+      $tasks = Task::all();
+      //return $tasks;
+      return view('rfid-todo-list', compact('tasks'));
     }
 
 }
