@@ -9,31 +9,25 @@ class TaskController extends Controller
 {
     public function storeTask(Request $request){
 
-        if ($request->filled('task_name')) {
-          //$task = $request->input('task_name');
-          //return $task;
-
+        if ($request->filled('note')) {
           $task = $request->all();
-          //return $task;
-          $task['task_status'] = 0;
           Task::create($task);
         }
         $tasks = Task::all();
-        //return $tasks;
-        return view('rfid-todo-list', compact('tasks'));
-        // foreach ($tasks as $task) {
-        //
-        // return $task->['task_name']
-        // }
-
-        //return redirect('/rfid-todo-list',compact('$tasks'));
-        //return view('rfid-todo-list');
+        return back();
     }
 
-    public function taskList(Request $request){
-      $tasks = Task::all();
-      //return $tasks;
-      return view('rfid-todo-list', compact('tasks'));
+    public function taskList($project){
+        $tasks = Task::all()->where('project',$project);
+          return view('rfid-todo-list', compact('tasks','project'));
+    }
+
+    public function updateTask(Request $request)
+    {
+        $task = Task::findOrFail($request->id);
+        $task->status = 1;
+        $task->update();
+        return back();
     }
 
 }

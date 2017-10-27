@@ -28,14 +28,14 @@
 <body>
     <div class="container">
         <div class="col-sm-12">
-
             <form action="/store-task" method="POST">
               {{ csrf_field() }}
-
+              <input type="hidden" name="project" value="{{ $project }}">
+              <input type="hidden" name="status" value="0">
                 <div class="alert alert-info" role="alert">
                   <h2>RFID Med - Todo List</h2>
                     <div class="text-center">
-                        <input type="text" name="task_name" class="form-control input-lg" placeholder="type your Task then press ENTER">
+                        <input type="text" name="note" class="form-control input-lg" placeholder="type your Task then press ENTER">
                     </div>
                 </div>
             </form>
@@ -45,12 +45,11 @@
               <ul class="list-group">
                   <li class="list-group-item active">Todo Tasks</li>
                   @foreach($tasks as $task)
-
-                    @if($task->task_status == 0)
-                      <li class="list-group-item list-group-item-warning">
-                        {{$task->task_name}}
-                        <span class="badge">23 hours before</span>
-                      </li>
+                    @if($task->status == 0)
+                    <a href="/edit-task?id={{ $task->id }}" type="button" class="list-group-item list-group-item-warning">
+                    <span class="badge">{{ $task->created_at->diffForHumans() }}</span>
+                    {{ $task->note }}
+                    </a>
                     @endif
                   @endforeach
               </ul>
@@ -59,11 +58,11 @@
             <ul class="list-group">
                 <li class="list-group-item active">Completed Tasks</li>
                 @foreach($tasks as $task)
-                  @if($task->task_status == 1)
-                    <li class="list-group-item list-group-item-success">
-                      {{$task->task_name}}
-                      <span class="badge">23 hours before</span>
-                    </li>
+                  @if($task->status == 1)
+                  <li class="list-group-item list-group-item-success">
+                  <span class="badge">{{ $task->updated_at->diffForHumans($task->created_at) }}</span>
+                  <s>{{ $task->note }}</s>
+                  </li>
                   @endif
                 @endforeach
             </ul>
