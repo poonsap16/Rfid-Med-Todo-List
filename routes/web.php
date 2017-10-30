@@ -12,5 +12,5 @@
 */
 
 Route::get('/{project}/todo-list', 'TaskController@taskList');
-Route::post('/store-task', 'TaskController@storeTask');
-Route::get('/edit-task','TaskController@updateTask');
+Route::post('/{project}/store-task', 'TaskController@storeTask');
+Route::get('/{project}/edit-task','TaskController@updateTask');
