@@ -10,6 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function()
+{
+  return view('welcome');
+}
+);
 
 Route::get('/{project}/todo-list', 'TaskController@taskList');
 Route::post('/{project}/store-task', 'TaskController@storeTask');
